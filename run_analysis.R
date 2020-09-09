@@ -31,16 +31,18 @@ singleDataSet <- cbind(xDataSet_mean_std, yDataSet, subDataSet)
 
 
 names(singleDataSet) <- make.names(names(singleDataSet))
-names(singleDataSet) <- gsub('Acc',"Acceleration",names(singleDataSet))
-names(singleDataSet) <- gsub('GyroJerk',"AngularAcceleration",names(singleDataSet))
-names(singleDataSet) <- gsub('Gyro',"AngularSpeed",names(singleDataSet))
-names(singleDataSet) <- gsub('Mag',"Magnitude",names(singleDataSet))
-names(singleDataSet) <- gsub('^t',"TimeDomain.",names(singleDataSet))
-names(singleDataSet) <- gsub('^f',"FrequencyDomain.",names(singleDataSet))
+
 names(singleDataSet) <- gsub('\\.mean',".Mean",names(singleDataSet))
 names(singleDataSet) <- gsub('\\.std',".StandardDeviation",names(singleDataSet))
 names(singleDataSet) <- gsub('Freq\\.',"Frequency.",names(singleDataSet))
 names(singleDataSet) <- gsub('Freq$',"Frequency",names(singleDataSet))
+names(singleDataSet) <- gsub('Acc',"Acceleration",names(singleDataSet))
+names(singleDataSet) <- gsub('Mag',"Magnitude",names(singleDataSet))
+names(singleDataSet) <- gsub('^t',"TimeDomain.",names(singleDataSet))
+names(singleDataSet) <- gsub('^f',"FrequencyDomain.",names(singleDataSet))
+names(singleDataSet) <- gsub('GyroJerk',"AngularAcceleration",names(singleDataSet))
+names(singleDataSet) <- gsub('Gyro',"AngularSpeed",names(singleDataSet))
+
 
 
 Data2<-aggregate(. ~Subject + Activity, singleDataSet, mean)
