@@ -1,20 +1,19 @@
-# Loading raw data sets.
-
 setwd("C:/Users/User/Desktop/UCI HAR Dataset")
 library(plyr)
 library(data.table)
-subjectTrain = read.table('./train/subject_train.txt',header=FALSE)
-xTrain = read.table('./train/x_train.txt',header=FALSE)
-yTrain = read.table('./train/y_train.txt',header=FALSE)
 
-subjectTest = read.table('./test/subject_test.txt',header=FALSE)
-xTest = read.table('./test/x_test.txt',header=FALSE)
-yTest = read.table('./test/y_test.txt',header=FALSE)
+subTreino = read.table('./train/subject_train.txt',header=FALSE)
+xTreino = read.table('./train/x_train.txt',header=FALSE)
+yTreino = read.table('./train/y_train.txt',header=FALSE)
+
+subTeste = read.table('./test/subject_test.txt',header=FALSE)
+xTeste = read.table('./test/x_test.txt',header=FALSE)
+yTeste = read.table('./test/y_test.txt',header=FALSE)
 
 
-xDataSet <- rbind(xTrain, xTest)
-yDataSet <- rbind(yTrain, yTest)
-subjectDataSet <- rbind(subjectTrain, subjectTest)
+xDataSet <- rbind(xTreino, xTeste)
+yDataSet <- rbind(yTreino, yTeste)
+subDataSet <- rbind(subTreino, subTeste)
 
 
 xDataSet_mean_std <- xDataSet[, grep("-(mean|std)\\(\\)", read.table("features.txt")[, 2])]
@@ -25,10 +24,10 @@ yDataSet[, 1] <- read.table("activity_labels.txt")[yDataSet[, 1], 2]
 names(yDataSet) <- "Activity"
 
 
-names(subjectDataSet) <- "Subject"
+names(subDataSet) <- "Subject"
 
 
-singleDataSet <- cbind(xDataSet_mean_std, yDataSet, subjectDataSet)
+singleDataSet <- cbind(xDataSet_mean_std, yDataSet, subDataSet)
 
 
 names(singleDataSet) <- make.names(names(singleDataSet))
